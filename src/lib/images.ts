@@ -24,4 +24,9 @@ export const ALL_IMAGES = [
   "/images/IMG_9718.jpeg",
   "/images/IMG_6266.jpeg",
   "/images/IMG_7006.JPG",
+  "/images/IMG_0886.jpeg",
+  "/images/IMG_6541.jpeg",
+  "/images/IMG_7526.jpeg",
+  "/images/IMG_9314.jpeg",
+  "/images/IMG_9887.jpeg",
 ];
