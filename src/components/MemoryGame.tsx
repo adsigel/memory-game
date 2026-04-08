@@ -177,7 +177,10 @@ export default function MemoryGame() {
       <h1 className="text-3xl font-bold text-purple-700 mt-3 mb-1">
         Photo Match
       </h1>
-      <p className="text-gray-500 text-sm mb-2">
+      <h2 className="text-black-500 font-bold text-sm mb-1">
+        A daily game featuring photos of your grandkids
+      </h2>
+      <p className="text-gray-400 text-xs mb-2">
         {dateStr} · {displayDifficulty === "easy" ? "Easy" : "Harder"} · {displayMoves}{" "}
         {displayMoves === 1 ? "guess" : "guesses"}
       </p>
