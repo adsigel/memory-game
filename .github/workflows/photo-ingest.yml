@@ -1,6 +1,11 @@
 name: Ingest New Photos
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/images/**"
   schedule:
     - cron: "0 6 * * *" # Daily at 6am UTC
   workflow_dispatch: # Manual trigger from GitHub UI or `gh workflow run photo-ingest.yml`
