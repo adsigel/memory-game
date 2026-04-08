@@ -41,9 +41,7 @@ function puzzleId(dateStr: string, difficulty: "easy" | "medium"): string {
 }
 
 export default function MemoryGame() {
-  const [dateStr, setDateStr] = useState(getTodayString);
-  const [dayOffset, setDayOffset] = useState(0);
-
+  const [dateStr] = useState(getTodayString);
   useEffect(() => {
     initAmplitude();
   }, []);
@@ -154,15 +152,6 @@ export default function MemoryGame() {
     [cards, flippedIds, matchedPairIds, isChecking, moves, dateStr, difficulty]
   );
 
-  // Simulate a new day for testing
-  const simulateNewDay = () => {
-    const newOffset = dayOffset + 1;
-    setDayOffset(newOffset);
-    const today = new Date();
-    today.setDate(today.getDate() + newOffset);
-    const newDateStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-    setDateStr(newDateStr);
-  };
 
   // Derive what to display — easy recap shows all cards revealed
   const displayCards = viewingEasy ? easySavedCards : cards;
@@ -186,11 +175,11 @@ export default function MemoryGame() {
     <div className="flex flex-col items-center w-full max-w-md mx-auto px-4">
       {/* Header */}
       <h1 className="text-3xl font-bold text-purple-700 mt-3 mb-1">
-        Memory Game
+        Photo Match
       </h1>
       <p className="text-gray-500 text-sm mb-2">
         {dateStr} · {displayDifficulty === "easy" ? "Easy" : "Harder"} · {displayMoves}{" "}
-        {displayMoves === 1 ? "move" : "moves"}
+        {displayMoves === 1 ? "guess" : "guesses"}
       </p>
 
       {/* Message banner — fixed minimum height so the card grid never shifts */}
@@ -236,7 +225,7 @@ export default function MemoryGame() {
                   className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl"
                   style={{ backfaceVisibility: "hidden" }}
                 >
-                  <span className={isMediumGrid ? "text-4xl" : "text-5xl"}>💜</span>
+                  <span className={isMediumGrid ? "text-4xl" : "text-5xl"}>📸</span>
                 </div>
 
                 {/* Card front (image) */}
@@ -271,7 +260,7 @@ export default function MemoryGame() {
             onClick={startMedium}
             className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-colors"
           >
-            Start Harder →
+            Try Harder Puzzle →
           </button>
         </div>
       )}
@@ -298,20 +287,6 @@ export default function MemoryGame() {
         </button>
       )}
 
-      {/* Testing controls */}
-      <div className="mt-8 mb-6 border-t border-dashed border-gray-300 pt-4 w-full text-center">
-        <p className="text-xs text-gray-400 mb-2">🧪 Testing controls</p>
-        <button
-          onClick={simulateNewDay}
-          className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm rounded-lg transition-colors"
-        >
-          Simulate Next Day →
-        </button>
-        <p className="text-xs text-gray-400 mt-1">
-          Currently showing: {dateStr}
-          {dayOffset > 0 && ` (+${dayOffset} day${dayOffset > 1 ? "s" : ""})`}
-        </p>
-      </div>
     </div>
   );
 }
